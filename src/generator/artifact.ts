@@ -244,15 +244,15 @@ export class Artifact extends EventEmitter {
     const { templateString, template, templateType } = this.artifact
     const result = templateString
       ? targetTemplateEngine.renderString(templateString, {
-          templateEngine: targetTemplateEngine,
-          ...renderContext,
-        })
+        templateEngine: targetTemplateEngine,
+        ...renderContext,
+      })
       : templateType === 'default'
-      ? targetTemplateEngine.render(`${template}.tpl`, {
+        ? targetTemplateEngine.render(`${template}.tpl`, {
           templateEngine: targetTemplateEngine,
           ...renderContext,
         })
-      : renderJSON(
+        : renderJSON(
           this.surgioConfig.templateDir,
           `${template}.json`,
           this.artifact.extendTemplate!,
@@ -284,6 +284,10 @@ export class Artifact extends EventEmitter {
     let provider: PossibleProviderType
     let nodeConfigList: ReadonlyArray<PossibleNodeConfigType>
     let providerConfig = require(filePath)
+
+    if (providerConfig.default) {
+      providerConfig = providerConfig.default
+    }
 
     // Read from local file if fetchOnce
     if (providerConfig.fetchOnce) {

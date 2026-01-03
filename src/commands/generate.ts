@@ -124,9 +124,10 @@ class GenerateCommand extends BaseCommand<typeof GenerateCommand> {
       config: PossibleProviderConfigType
     }[] = jsProviderFiles.map((file) => {
       const filePath = path.join(config.providerDir, file)
+      const providerConfig = require(filePath)
       return {
         name: path.basename(file, '.js'),
-        config: require(filePath),
+        config: providerConfig.default || providerConfig,
       }
     })
 

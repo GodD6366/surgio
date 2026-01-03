@@ -10,6 +10,9 @@
   "repository": "https://github.com/geekdada/surgio",
   "author": "Roy Li <me@royli.dev>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "bin",
     "build",
