@@ -1,0 +1,1 @@
+[{"nodeName":"LocalNode","type":"shadowsocks","server":"1.2.3.4","port":1234,"method":"aes-256-gcm","password":"password"}]

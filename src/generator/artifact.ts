@@ -285,6 +285,12 @@ export class Artifact extends EventEmitter {
     let nodeConfigList: ReadonlyArray<PossibleNodeConfigType>
     let providerConfig = require(filePath)
 
+
+    // Resolve provider config if it is a function
+    if (typeof providerConfig === 'function') {
+      providerConfig = await providerConfig()
+    }
+
     if (providerConfig.default) {
       providerConfig = providerConfig.default
     }
